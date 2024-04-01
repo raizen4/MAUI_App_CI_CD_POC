@@ -1,0 +1,34 @@
+name: CD Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - "**.md"
+      - '**/*.gitignore'
+      - '**/*.gitattributes'
+      - '**/*.yml'
+  pull_request:
+    branches: [ "main" ]
+  
+  env:
+  BUILD_VERSION: '2.0'
+  DOTNET_VERSION: 8.0.x
+  XCODE_VERSION: 15.2
+  DOTNET_VERSION_TARGETS: net8.0
+  CSPROJ_TO_BUILD: PATH_TO_PROJECT_FILE
+  PROJECT_FOLDER: PROJECT_FOLDER_NAME
+
+jobs:
+  vars:
+    runs-on: ubuntu-22.04
+    outputs:      
+      buildVersion: ${{ env.BUILD_VERSION }}
+      dotnetVersion: ${{ env.DOTNET_VERSION }}
+      xcodeVersion: ${{ env.XCODE_VERSION }}
+      dotnetVersionTargets: ${{ env.DOTNET_VERSION_TARGETS }}
+      csprojToBuild: ${{ env.CSPROJ_TO_BUILD }}
+      projectFolder: ${{ env.PROJECT_FOLDER }}
+    steps:
+      - run: echo "Exposing env vars, because they can't be passed to nested workflows."
