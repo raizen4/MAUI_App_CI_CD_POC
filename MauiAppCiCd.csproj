@@ -24,7 +24,7 @@
         <ApplicationTitle>MauiAppCiCd</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.companyname.mauiappcicd</ApplicationId>
+        <ApplicationId>com.TechPulseSolutions.mauiappcicd</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -36,6 +36,12 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <CodesignKey>Apple Development: Bogdan Boldur (5UG9FNNZ96)</CodesignKey>
+      <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
+      <CodesignProvision>dev provisioning maui test app</CodesignProvision>
     </PropertyGroup>
 
     <ItemGroup>
@@ -57,9 +63,35 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="AvantiPoint.MauiMicroMvvm" Version="0.2.7" />
+        <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0"/>
+	    <PackageReference Include="DotNetMeteor.HotReload.Plugin" Version="3.*"/>
+	    <PackageReference Include="Plugin.Firebase.Auth" Version="2.0.7" />
+	    <PackageReference Include="Plugin.Firebase.Core" Version="2.0.1" />
     </ItemGroup>
 
+    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+        <GoogleServicesJson Include="google-services.json" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-ios'">
+        <BundleResource Include="GoogleService-Info.plist" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Update="Views\MainPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\MainPage.xaml.cs">
+        <DependentUpon>MainPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+    
 </Project>

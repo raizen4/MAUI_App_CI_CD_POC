@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "611263481027",
+    "project_id": "mauiapptestcicd",
+    "storage_bucket": "mauiapptestcicd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611263481027:android:66195cf37b73885b2c8e76",
+        "android_client_info": {
+          "package_name": "com.TechPulseSolutions.mauiappcicd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0DTe9DwbRo9P4WCGKK0GH1rH7EygR6Xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
